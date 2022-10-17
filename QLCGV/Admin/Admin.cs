@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BAL;
+using DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -101,8 +103,22 @@ namespace QLCGV.Admin
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            this.Hide();
-            new Login().Show();
+            
+            try
+            {
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    
+                    this.Hide();
+                    MessageBox.Show("Đăng xuất thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    new Login().Show();
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);    
+            }
+
         }
     }
 }
